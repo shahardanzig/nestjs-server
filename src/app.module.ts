@@ -4,6 +4,8 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { serverConfig } from '../config/server.config';
+import { CustomerModule } from './customer/customer.module';
+import { TransactionModule } from './transaction/transaction.module';
 
 @Module({
   imports: [
@@ -18,7 +20,9 @@ import { serverConfig } from '../config/server.config';
       useFactory: async (config: ConfigService) => ({
         uri: `mongodb://${config.get('server.mongodb.hostname')}/${config.get('server.mongodb.database')}`
       })
-    })
+    }),
+    CustomerModule,
+    TransactionModule,
   ],
   controllers: [AppController],
   providers: [AppService],
