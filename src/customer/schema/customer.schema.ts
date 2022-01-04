@@ -5,17 +5,14 @@ export type CustomerDocument = Customer & Document;
 
 @Schema()
 export class Customer {
-
-  @Prop({ required: true })
-  customer_id: string;
-
+  
   @Prop({ required: true })
   first_name: string;
 
   @Prop({ required: true })
   last_name: string;
 
-  @Prop({ required: true })
+  @Prop({ required: true, unique: true })
   email: string;
 
   @Prop({ required: true })

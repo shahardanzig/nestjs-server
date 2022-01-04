@@ -1,12 +1,13 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { Document, Schema as moongoseSchema} from 'mongoose';
+import { Customer } from '../../customer/schema/customer.schema';
 
 export type TransactionDocument = Transaction & Document;
 
 @Schema()
 export class Transaction {
-  @Prop({ required: true })
-  customer_id: string;
+  @Prop({ type: moongoseSchema.Types.ObjectId, ref: 'Customer' })
+  customer_id: Customer;
 
   @Prop({ required: true })
   total_price: number;

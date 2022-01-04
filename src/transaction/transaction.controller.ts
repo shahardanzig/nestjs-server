@@ -2,6 +2,7 @@ import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { ObjectId } from 'mongoose';
 import { CreateTransactionDto } from './dto/create-transaction.dto';
 import { UpdateTransactionDto } from './dto/update-transaction.dto';
+import { DisplayTransaction } from './interface/display-transaction.interface';
 import { Transaction } from './schema/transaction.schema';
 import { TransactionService } from './transaction.service';
 
@@ -10,7 +11,7 @@ export class TransactionController {
     constructor(private transactionService: TransactionService) { }
 
     @Get('/all')
-    async getAll(): Promise<Transaction[]> {
+    async getAll(): Promise<DisplayTransaction[]> {
         return await this.transactionService.getAllTransactions();
     }
 
