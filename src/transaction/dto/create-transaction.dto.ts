@@ -1,5 +1,6 @@
 import { Type } from "class-transformer";
-import { IsInt, IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsEnum, IsInt, IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { CardType } from "../enum/card-type.enum";
 
 export class CreateTransactionDto {
     @IsString()
@@ -14,8 +15,8 @@ export class CreateTransactionDto {
     @IsNotEmpty()
     currency: string;
 
-    @IsString()
     @IsNotEmpty()
+    @IsEnum(CardType)
     cerdit_card_type: string;
 
     @Type(() => Number)
