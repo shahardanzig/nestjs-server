@@ -20,6 +20,7 @@ export class TransactionService {
     async getAllTransactions(): Promise<DisplayTransaction[]> {
         const transactions = await this.transactionModel.find().populate('customer_id', 'first_name last_name email').exec();
         return transactions.map(transaction => ({
+            customer_id: transaction.customer_id,
             customer_name: `${transaction.customer_id.first_name} ${transaction.customer_id.last_name}`,
             customer_email: transaction.customer_id.email,
             cerdit_card_number: transaction.cerdit_card_number,
