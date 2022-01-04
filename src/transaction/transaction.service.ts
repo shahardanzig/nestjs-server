@@ -15,7 +15,7 @@ export class TransactionService {
         private transactionModel: Model<TransactionDocument>
     ) {
         // this.insertMany(revisedData);
-     }
+    }
 
     async getAllTransactions(): Promise<DisplayTransaction[]> {
         const transactions = await this.transactionModel.find().populate('customer_id', 'first_name last_name email').exec();
@@ -32,10 +32,7 @@ export class TransactionService {
     }
 
     async create(createTransactionDto: CreateTransactionDto): Promise<Transaction> {
-        const createdTransaction = new this.transactionModel({
-            _id: createTransactionDto.customer_id,
-            ...createTransactionDto
-        });
+        const createdTransaction = new this.transactionModel(createTransactionDto);
         return createdTransaction.save();
     }
 
